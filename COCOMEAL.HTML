@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColoMeal Prep - Platform Investment Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CORE SETUP */
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body {
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 2. SLIDE CONTAINER */
+.slide-container {
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  width: 1280px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  page-break-after: always;
+  break-after: always;
+}
+
+/* Print Settings */
+@media print {
+    @page { size: landscape; margin: 0; }
+    body { padding: 0; background: white; }
+    .slide-container { box-shadow: none; border: none; margin: 0; width: 100%; height: 100vh; border-radius: 0; transform: scale(1); }
+}
+
+/* Colors */
+:root {
+    --primary-blue: #0f4c81;
+    --secondary-teal: #2a9d8f;
+    --alert-red: #ef4444;
+    --bg-gray: #f8fafc;
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+}
+
+/* Typography */
+h1, h2, h3 { color: var(--primary-blue); margin: 0; letter-spacing: -0.5px; }
+h1 { font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+.slide-title { font-size: 44px; font-weight: 800; margin-bottom: 40px; border-left: 8px solid var(--secondary-teal); padding-left: 30px; width: 100%; color: var(--text-dark); }
+p, li { color: #334155; font-size: 20px; line-height: 1.6; }
+.subtitle { color: var(--text-gray); font-size: 28px; font-weight: 400; }
+
+.content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
+
+/* Layouts */
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: center; }
+.tiled-content { display: flex; gap: 30px; width: 100%; align-items: stretch; }
+.tile { background: var(--bg-gray); border: 1px solid #e2e8f0; border-radius: 20px; flex: 1; padding: 35px; display: flex; flex-direction: column; }
+.tile .icon { font-size: 40px; color: var(--primary-blue); margin-bottom: 20px; }
+.tile h3 { font-size: 24px; margin-bottom: 12px; color: var(--text-dark); font-weight: 700; }
+
+/* Image Placeholder */
+.image-wrapper { border-radius: 20px; overflow: hidden; height: 450px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; background: #f1f5f9; }
+.image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Package Design */
+.package-container { display: flex; justify-content: center; gap: 30px; margin-top: 20px; align-items: stretch; }
+.package-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; width: 320px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; }
+.package-header { padding: 20px; text-align: center; color: white; font-weight: 700; font-size: 22px; }
+.header-d3 { background: #94a3b8; } .header-d2 { background: var(--secondary-teal); } .header-d1 { background: var(--primary-blue); }
+.package-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; gap: 15px; }
+.food-item { display: flex; align-items: center; gap: 15px; padding: 12px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+.food-icon-circle { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue); font-size: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); flex-shrink: 0; }
+.food-text { font-size: 18px; color: var(--text-dark); font-weight: 700; }
+.food-sub { font-size: 14px; color: #94a3b8; font-weight: 400; }
+
+/* App Phone Mockup */
+.phone-mockup {
+    width: 320px; height: 580px; background: #1e293b; border-radius: 40px; padding: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2); margin: 0 auto; position: relative;
+}
+.phone-screen {
+    width: 100%; height: 100%; background: white; border-radius: 30px; overflow: hidden; position: relative;
+}
+.app-header { background: var(--primary-blue); padding: 20px; color: white; }
+.app-search-bar { background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; margin-top: 10px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+.app-body { padding: 20px; }
+.app-card { background: #f1f5f9; padding: 15px; border-radius: 15px; margin-bottom: 15px; }
+.app-card h4 { margin: 0 0 5px 0; color: var(--text-dark); font-size: 16px; }
+.result-row { display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid; }
+.res-safe { border-color: var(--secondary-teal); }
+.res-danger { border-color: var(--alert-red); }
+
+/* Lists */
+ul.styled-list { list-style: none; padding: 0; }
+ul.styled-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-weight: 500; }
+ul.styled-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--secondary-teal); position: absolute; left: 0; top: 4px; font-size: 18px; }
+
+/* Financial Chart */
+.chart-wrapper { width: 90%; margin: 0 auto; height: 350px; display: flex; align-items: flex-end; gap: 40px; border-bottom: 2px solid #cbd5e1; padding-bottom: 20px; }
+.chart-bar { width: 70%; background: linear-gradient(180deg, var(--secondary-teal) 0%, var(--primary-blue) 100%); border-radius: 12px 12px 0 0; position: relative; margin: 0 auto; }
+.chart-bar-group { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+.chart-value { position: absolute; top: -35px; width: 100%; text-align: center; font-weight: 800; color: var(--primary-blue); font-size: 20px; }
+.chart-label { text-align: center; margin-top: 15px; font-weight: 700; color: var(--text-dark); }
+
+/* Budget Donut Chart */
+.budget-circle { width: 350px; height: 350px; border-radius: 50%; background: conic-gradient(var(--primary-blue) 0% 40%, var(--secondary-teal) 40% 70%, #cbd5e1 70% 90%, #f59e0b 90% 100%); position: relative; display: flex; justify-content: center; align-items: center; }
+.budget-hole { width: 200px; height: 200px; background: white; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide-container">
+    <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+        <div style="background: #e0f2fe; color: #0f4c81; display: inline-block; padding: 10px 30px; border-radius: 50px; font-weight: 700; margin-bottom: 30px; font-size: 18px; letter-spacing: 1px;">2025 INVESTOR RELATIONS</div>
+        <h1>ColoMeal Prep</h1>
+        <p class="subtitle">대장내시경 준비식 표준화 및<br>디지털 헬스케어(App) 플랫폼</p>
+        <div style="margin-top: 80px; display: flex; justify-content: center; gap: 60px; color: #64748b; font-weight: 500;">
+            <div><i class="fa-solid fa-utensils" style="color:#2a9d8f; margin-right:8px;"></i> H/W: 프리미엄 저잔사식</div>
+            <div><i class="fa-solid fa-mobile-screen-button" style="color:#2a9d8f; margin-right:8px;"></i> S/W: 케어 앱</div>
+            <div><i class="fa-solid fa-user-doctor" style="color:#2a9d8f; margin-right:8px;"></i> Target: 공공/검진연계</div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Problem -->
+<div class="slide-container">
+    <h2 class="slide-title">Problem: "무지의 공포와 병원의 비효율"</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3 style="margin-bottom: 20px; color: var(--alert-red);">Customer Pain Points</h3>
+                <ul class="styled-list" style="list-style:none;">
+                    <li style="padding-left:0; margin-bottom:20px;">
+                        <strong style="font-size:22px; display:block; margin-bottom:5px;"><i class="fa-solid fa-circle-question" style="color:var(--alert-red);"></i> "이거 먹어도 되나요?"</strong>
+                        김치, 커피, 잡곡밥 등 일상 음식에 대한 정보 부족으로 인한 끊임없는 불안감.
+                    </li>
+                    <li style="padding-left:0;">
+                         <strong style="font-size:22px; display:block; margin-bottom:5px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--alert-red);"></i> "실수로 먹었어요"</strong>
+                        무심코 먹은 깨 한 톨 때문에 당일 검사가 취소되고 <strong>재검사</strong>를 받아야 하는 고통.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                 <h3 style="margin-bottom: 20px; color: var(--primary-blue);">Hospital Pain Points</h3>
+                 <div class="tile" style="padding: 30px;">
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
+                        <i class="fa-solid fa-phone-slash" style="color:var(--text-dark); font-size:24px;"></i>
+                        <h4 style="margin:0; font-size:20px;">전화 문의 폭주</h4>
+                    </div>
+                    <p>간호사가 하루에도 수십 번씩 "커피 마셔도 되냐"는 단순 질문에 응대하느라 업무 마비.</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Solution (Platform) -->
+<div class="slide-container">
+    <h2 class="slide-title">Solution: "Hardware + Software" Platform</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="tile" style="text-align: center; height: 450px; justify-content: center;">
+                <i class="fa-solid fa-bowl-food" style="font-size: 80px; color: var(--secondary-teal); margin-bottom: 30px;"></i>
+                <h3 style="font-size: 28px;">프리미엄 식단 (H/W)</h3>
+                <p style="margin-top: 15px;">"죽만 먹지 않습니다"<br>맛과 안전을 모두 잡은 저잔사식</p>
+            </div>
+            <div class="tile" style="text-align: center; height: 450px; justify-content: center; border-color: var(--primary-blue); background: #f0f9ff;">
+                <i class="fa-solid fa-mobile-screen" style="font-size: 80px; color: var(--primary-blue); margin-bottom: 30px;"></i>
+                <h3 style="font-size: 28px;">스마트 앱 (S/W)</h3>
+                <p style="margin-top: 15px;">음식 O/X 검색 &<br>복약 타임라인 알림 케어</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Package Product -->
+<div class="slide-container">
+    <h2 class="slide-title">Product 1: 메뉴 구성 (Premium Menu)</h2>
+    <div class="content-area">
+        <p style="text-align: center; margin-bottom: 30px; color: #64748b; font-size: 20px;">
+            "1~2일 차는 <strong>든든한 일반식</strong>, 3일 차는 <strong>확실한 비움</strong>을 제공합니다."
+        </p>
+        <div class="package-container">
+            <div class="package-box">
+                <div class="package-header header-d3">Day -3 (든든한 일반식)</div>
+                <div class="package-content">
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-bowl-rice"></i></div><div><div class="food-text">백미밥 & 장조림</div><div class="food-sub">부드러운 살코기 단백질</div></div></div>
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-egg"></i></div><div><div class="food-text">계란말이 & 맑은국</div><div class="food-sub">야채 없는 안전한 반찬</div></div></div>
+                </div>
+            </div>
+            <div class="package-box">
+                <div class="package-header header-d2">Day -2 (부드러운 별미)</div>
+                <div class="package-content">
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-bread-slice"></i></div><div><div class="food-text">모닝빵 샌드위치</div><div class="food-sub">햄/치즈/계란 (채소 제외)</div></div></div>
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-fish-fins"></i></div><div><div class="food-text">순살 생선 & 연두부</div><div class="food-sub">소화가 잘 되는 고영양식</div></div></div>
+                </div>
+            </div>
+            <div class="package-box">
+                <div class="package-header header-d1">Day -1 (확실한 비움)</div>
+                <div class="package-content">
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-cookie-bite"></i></div><div><div class="food-text">카스테라 & 흰죽</div><div class="food-sub">건더기 없는 완전 유동식</div></div></div>
+                    <div class="food-item"><div class="food-icon-circle"><i class="fa-solid fa-bottle-water"></i></div><div><div class="food-text">투명 두유 & 이온음료</div><div class="food-sub">공복감 해소 및 전해질 보충</div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: App Product -->
+<div class="slide-container">
+    <h2 class="slide-title">Product 2: 스마트 케어 앱 (ColoMeal App)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <!-- Phone Mockup -->
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="app-header">
+                        <div style="font-size: 18px; font-weight: 700;">ColoMeal Care</div>
+                        <div style="font-size: 12px; opacity: 0.8;">D-2 (검사 2일 전)</div>
+                        <div class="app-search-bar">
+                            <i class="fa-solid fa-magnifying-glass"></i> 김치, 커피, 우유...
+                        </div>
+                    </div>
+                    <div class="app-body">
+                        <div class="app-card" style="background: #f0fdfa; border: 1px solid #2a9d8f;">
+                            <h4 style="color: #2a9d8f; display:flex; justify-content:space-between;">
+                                <span>복약 알림</span> <span><i class="fa-regular fa-bell"></i> ON</span>
+                            </h4>
+                            <p style="font-size: 14px; margin-top: 5px;">오후 7시에 장 정결제 복용 시간입니다.</p>
+                        </div>
+                        <p style="font-size: 14px; color: #64748b; margin-bottom: 10px;">최근 검색 기록</p>
+                        <div class="result-row res-danger">
+                            <div>
+                                <div style="font-weight: 700; font-size: 16px;">김치</div>
+                                <div style="font-size: 12px; color: #ef4444;">절대 금지 (섬유질)</div>
+                            </div>
+                            <i class="fa-solid fa-circle-xmark" style="color: #ef4444; font-size: 20px;"></i>
+                        </div>
+                        <div class="result-row res-safe">
+                            <div>
+                                <div style="font-weight: 700; font-size: 16px;">아메리카노</div>
+                                <div style="font-size: 12px; color: #2a9d8f;">섭취 가능 (건더기 X)</div>
+                            </div>
+                            <i class="fa-solid fa-circle-check" style="color: #2a9d8f; font-size: 20px;"></i>
+                        </div>
+                    </div>
+                    <!-- Floating Button -->
+                    <div style="position:absolute; bottom:20px; right:20px; background:var(--primary-blue); width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; box-shadow:0 5px 15px rgba(15,76,129,0.4);">
+                        <i class="fa-solid fa-comment-medical"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Features Text -->
+            <div>
+                <h3 style="color:var(--primary-blue); margin-bottom:20px;">"병원 전화 문의 90% 감소"</h3>
+                <ul class="styled-list">
+                    <li><strong>음식 O/X 판독기:</strong> "김치 먹어도 되나요?" 검색 시 즉시 답변 (DB 기반).</li>
+                    <li><strong>자동 스케줄링:</strong> 검사일만 입력하면 D-3, D-2, D-1 식단 및 금식 시간 자동 계산.</li>
+                    <li><strong>복약 알람:</strong> 장 정결제 복용 시간을 놓치지 않도록 푸시 알림 발송.</li>
+                    <li><strong>Lock-in 효과:</strong> 식단을 구매하지 않은 환자도 앱 사용 → 잠재 고객 확보.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Business Model (B2G & Insurance) -->
+<div class="slide-container">
+    <h2 class="slide-title">Business Model (공공 및 제휴 확장)</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="badge">B2C Sales</div>
+                <h3>직접 판매</h3>
+                <div style="font-size:32px; color:var(--primary-blue); font-weight:800; margin:10px 0;">35,000원 <span style="font-size:16px; color:#64748b; font-weight:400;">/ 세트</span></div>
+                <ul style="font-size:16px; color:#475569; line-height:1.8; margin-top:10px;">
+                    <li>마진 31% (공헌이익 11,000원)</li>
+                    <li>자사몰 및 오픈마켓 판매</li>
+                </ul>
+            </div>
+            <div class="tile" style="border-color:var(--secondary-teal); background:#f0fdfa;">
+                <div class="badge" style="background:var(--secondary-teal); color:white;">B2G Public</div>
+                <h3>공공/보건소 연계</h3>
+                <div style="font-size:32px; color:var(--secondary-teal); font-weight:800; margin:10px 0;">바우처 지원</div>
+                <ul style="font-size:16px; color:#475569; line-height:1.8; margin-top:10px;">
+                    <li><strong>국민건강보험공단:</strong> 검진 수검률 향상 캠페인 연계</li>
+                    <li><strong>보건소:</strong> 독거노인 등 취약계층 대상 '검진 준비식' 지원 사업</li>
+                </ul>
+            </div>
+            <div class="tile">
+                <div class="badge">B2I Insurance</div>
+                <h3>보험사 제휴</h3>
+                <div style="font-size:32px; color:#475569; font-weight:800; margin:10px 0;">비용 절감 모델</div>
+                <ul style="font-size:16px; color:#475569; line-height:1.8; margin-top:10px;">
+                    <li><strong>Benefit:</strong> 실손보험/건강보험 가입자 대상 '안심 준비 키트' 제공</li>
+                    <li><strong>Win-Win:</strong> 재검사율 감소 → <strong>보험금 지급액(Loss Ratio) 절감</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Roadmap (Detailed) -->
+<div class="slide-container">
+    <h2 class="slide-title">Execution Roadmap (단계별 실행 계획)</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile" style="text-align:left;">
+                <h3 style="color:var(--primary-blue);">Phase 1: 런칭 (Q1-Q2)</h3>
+                <p style="font-size:14px; color:#64748b; margin-bottom:15px;">목표: MVP 검증 & 초기 팬덤 확보</p>
+                <ul class="styled-list" style="font-size:16px;">
+                    <li><strong>Product:</strong> 식단 키트 출시, 앱 베타(Android)</li>
+                    <li><strong>Sales:</strong> 월 500세트 판매 (매출 1,700만)</li>
+                    <li><strong>KPI:</strong> 리뷰 100개, 평점 4.8 이상</li>
+                </ul>
+            </div>
+            <div class="tile" style="text-align:left; border-color:var(--secondary-teal); background:#f0fdfa;">
+                <h3 style="color:var(--secondary-teal);">Phase 2: 확장 (Q3)</h3>
+                <p style="font-size:14px; color:#64748b; margin-bottom:15px;">목표: B2B/B2G 안착 & BEP 달성</p>
+                <ul class="styled-list" style="font-size:16px;">
+                    <li><strong>Product:</strong> 앱 정식 런칭(iOS), 투명식 단품</li>
+                    <li><strong>Sales:</strong> 월 1,500세트 (매출 5,200만)</li>
+                    <li><strong>Partner:</strong> 거점 병원 10곳, <strong>보건소 시범사업</strong> 추진</li>
+                    <li><strong>KPI:</strong> <strong>월 손익분기점(BEP) 돌파</strong></li>
+                </ul>
+            </div>
+            <div class="tile" style="text-align:left;">
+                <h3 style="color:var(--text-dark);">Phase 3: 도약 (Q4~)</h3>
+                <p style="font-size:14px; color:#64748b; margin-bottom:15px;">목표: 공공 데이터 연동</p>
+                <ul class="styled-list" style="font-size:16px;">
+                    <li><strong>Expansion:</strong> 당뇨식/수술후 회복식 개발</li>
+                    <li><strong>Sales:</strong> 월 3,000세트 (매출 1억+)</li>
+                    <li><strong>Tech:</strong> <strong>국민건강보험공단</strong> 검진 데이터 연동 추진</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Financials (Detailed) -->
+<div class="slide-container">
+    <h2 class="slide-title">Financial Projection (상세 재무 추정)</h2>
+    <div class="content-area">
+        <div style="display:flex; gap:40px; align-items:center; height:100%;">
+            <div style="flex:1;">
+                <table style="width:100%; border-collapse: collapse; font-size:18px;">
+                    <thead>
+                        <tr style="background:#f1f5f9; border-bottom:2px solid var(--primary-blue);">
+                            <th style="padding:15px; text-align:left;">구분 (단위: 백만원)</th>
+                            <th style="padding:15px; text-align:center;">Year 1</th>
+                            <th style="padding:15px; text-align:center;">Year 2</th>
+                            <th style="padding:15px; text-align:center;">Year 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #e2e8f0;">
+                            <td style="padding:15px; font-weight:700;">매출액 (Revenue)</td>
+                            <td style="padding:15px; text-align:center; color:var(--primary-blue); font-weight:700;">450</td>
+                            <td style="padding:15px; text-align:center; font-weight:700;">2,000</td>
+                            <td style="padding:15px; text-align:center; font-weight:700;">6,500</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px 15px; color:#64748b;">- 매출원가 (COGS)</td>
+                            <td style="padding:10px 15px; text-align:center;">270</td>
+                            <td style="padding:10px 15px; text-align:center;">1,100</td>
+                            <td style="padding:10px 15px; text-align:center;">3,250</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #e2e8f0;">
+                            <td style="padding:10px 15px; color:#64748b;">- 판관비 (Mkt/Ops)</td>
+                            <td style="padding:10px 15px; text-align:center;">200</td>
+                            <td style="padding:10px 15px; text-align:center;">600</td>
+                            <td style="padding:10px 15px; text-align:center;">1,500</td>
+                        </tr>
+                        <tr style="background:#f0fdfa;">
+                            <td style="padding:15px; font-weight:700; color:var(--secondary-teal);">영업이익 (Op. Profit)</td>
+                            <td style="padding:15px; text-align:center; color:#ef4444;">-20</td>
+                            <td style="padding:15px; text-align:center; color:var(--secondary-teal); font-weight:700;">300</td>
+                            <td style="padding:15px; text-align:center; color:var(--secondary-teal); font-weight:700;">1,750</td>
+                        </tr>
+                         <tr>
+                            <td style="padding:10px 15px; font-size:14px;">영업이익률 (OPM)</td>
+                            <td style="padding:10px 15px; text-align:center; font-size:14px;">-4.4%</td>
+                            <td style="padding:10px 15px; text-align:center; font-size:14px;">15%</td>
+                            <td style="padding:10px 15px; text-align:center; font-size:14px;">27%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top:20px; font-size:14px; color:#64748b;">* Year 1은 초기 개발비 및 마케팅 투자로 적자 예상되나, <strong>9개월 차(Q3) 월간 BEP 달성</strong> 목표.</p>
+            </div>
+            <div class="chart-wrapper" style="width:40%; height:300px; margin:0; border:none;">
+                <div class="chart-bar-group"><div class="chart-value">0.45억</div><div class="chart-bar" style="height: 15%; background: #cbd5e1;"></div><div class="chart-label">Y1</div></div>
+                <div class="chart-bar-group"><div class="chart-value">20억</div><div class="chart-bar" style="height: 40%; background: var(--secondary-teal);"></div><div class="chart-label">Y2</div></div>
+                <div class="chart-bar-group"><div class="chart-value">65억</div><div class="chart-bar" style="height: 100%; background: var(--primary-blue);"></div><div class="chart-label">Y3</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Investment Allocation -->
+<div class="slide-container">
+    <h2 class="slide-title">Use of Funds (자금 사용 계획)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <div class="budget-circle">
+                    <div class="budget-hole">
+                        <span style="font-size:14px; color:#64748b;">Total Ask</span>
+                        <span style="font-size:32px; font-weight:800; color:var(--primary-blue);">5,000만</span>
+                    </div>
+                </div>
+                <p style="margin-top:20px; font-weight:700; color:var(--text-dark);">Seed Round Budget</p>
+            </div>
+            <div>
+                <ul style="list-style:none; padding:0;">
+                    <li style="margin-bottom:20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <strong style="font-size:20px; color:var(--primary-blue);">Product (40%)</strong>
+                            <span style="font-size:18px; font-weight:700;">2,000만</span>
+                        </div>
+                        <div style="height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;"><div style="width:40%; height:100%; background:var(--primary-blue);"></div></div>
+                        <p style="font-size:14px; color:#64748b; margin-top:5px;">식단 OEM 초도물량 생산, 패키지 금형, 물류 세팅</p>
+                    </li>
+                    <li style="margin-bottom:20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <strong style="font-size:20px; color:var(--secondary-teal);">Marketing (30%)</strong>
+                            <span style="font-size:18px; font-weight:700;">1,500만</span>
+                        </div>
+                        <div style="height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;"><div style="width:30%; height:100%; background:var(--secondary-teal);"></div></div>
+                        <p style="font-size:14px; color:#64748b; margin-top:5px;">초기 체험단(100명), 키워드 광고, 병원 영업 판촉물</p>
+                    </li>
+                    <li style="margin-bottom:20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <strong style="font-size:20px; color:#cbd5e1;">Dev (20%)</strong>
+                            <span style="font-size:18px; font-weight:700;">1,000만</span>
+                        </div>
+                        <div style="height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;"><div style="width:20%; height:100%; background:#cbd5e1;"></div></div>
+                        <p style="font-size:14px; color:#64748b; margin-top:5px;">앱 프로토타입 개발, 웹사이트 구축, 서버 비용</p>
+                    </li>
+                    <li>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <strong style="font-size:20px; color:#f59e0b;">Ops (10%)</strong>
+                            <span style="font-size:18px; font-weight:700;">500만</span>
+                        </div>
+                        <div style="height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;"><div style="width:10%; height:100%; background:#f59e0b;"></div></div>
+                        <p style="font-size:14px; color:#64748b; margin-top:5px;">예비비, 기타 운영 자금</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Exit Strategy (Strategic) -->
+<div class="slide-container">
+    <h2 class="slide-title">Exit Strategy (상세 회수 전략)</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-hospital-user"></i></div>
+                <h3>Strategic M&A (Association)</h3>
+                <p><strong>Target:</strong> 한국건강관리협회(메디체크), KMI 등 대형 검진기관</p>
+                <hr style="border:0; border-top:1px solid #e2e8f0; margin:10px 0;">
+                <p style="font-size:16px;"><strong>Strategy:</strong> 자회사 편입<br>
+                전국 16개 지부, 연 수백만 건 검진을 수행하는 협회의 <strong>'공식 준비식 공급사'</strong>로 인수되어 검진 품질 표준화 달성.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                <h3>SI M&A (Food/Pharma)</h3>
+                <p><strong>Target:</strong> 식품 대기업(CJ, 대상) / 제약사</p>
+                <hr style="border:0; border-top:1px solid #e2e8f0; margin:10px 0;">
+                <p style="font-size:16px;"><strong>Value:</strong><br>
+                식품 기업의 케어푸드 라인업 확장 또는 제약사의 환자 토탈 케어 플랫폼 확장을 위한 핵심 파이프라인으로 매각.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <h3>IPO (KOSDAQ)</h3>
+                <p><strong>Target:</strong> 기술특례 상장</p>
+                <hr style="border:0; border-top:1px solid #e2e8f0; margin:10px 0;">
+                <p style="font-size:16px;"><strong>Milestone:</strong><br>
+                Year 5 매출 300억 달성. 단순 식품 유통이 아닌 '헬스케어 플랫폼' 가치 인정 목표.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Vision -->
+<div class="slide-container" style="background-image: linear-gradient(135deg, #0f4c81, #2a9d8f); color: white;">
+    <div class="content-area" style="text-align: center; align-items: center;">
+        <h2 style="font-size: 60px; font-weight: 700; margin-bottom: 30px; color: white;">The Standard of Care</h2>
+        <p style="font-size: 26px; max-width: 900px; color: white; opacity: 0.9;">
+            ColoMeal Prep은 식단(Food)과 기술(Tech)을 결합하여,<br>
+            <strong>가장 안전하고 간편한 검진 경험</strong>을 만듭니다.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
